@@ -19,15 +19,31 @@ import kata4.view.MailListReader;
 public class Main {
 
     public static void main(String[] args) {
-        //Input
-        String filename = "email.txt";
-        //Process
-        List<Mail> mailList = MailListReader.read(filename);
-        //Output
-        Histogram histograma = MailHistogramBuilder.build(mailList);
-        //Execute
+        String filename = input("email.txt");
+        List<Mail> mailList = process(filename);
+        Histogram histograma = output(mailList);
+        execute(histograma);
+    }
+    
+    //Input: obtenemos datos
+    private static String input(String filename){
+        return filename;
+    }
+    
+    //Process: procesamos datos para crear un output
+    private static List<Mail> process(String filename){
+        return MailListReader.read(filename);
+    }
+    
+    //Output: obtenemos producto que mostrara mi vista.
+    private static Histogram output(List<Mail> mailList) {
+        return MailHistogramBuilder.build(mailList);
+    }
+    
+    //Execute: mostramos output mediante la/las vistas
+    private static void execute(Histogram histograma){
         HistogramDisplay histogramDisplay = new HistogramDisplay(histograma);
         histogramDisplay.execute();
     }
-
+    
 }
